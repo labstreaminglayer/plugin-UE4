@@ -1,0 +1,18 @@
+{
+    "FileVersion" : 1,
+    "FriendlyName" : "LabStreamingLayer Plugin",
+    "Version" : 1,
+    "VersionName": "0.1",
+    "EngineVersion" : "4.7",
+    "Description" : "Inlet/Outlet for LabStreamingLayer",
+    "Category" : "LSL.InOut",
+    "CreatedBy" : "Chadwick Boulay",
+    "CreatedByURL" : "",
+    "Modules" :
+        [
+            {
+                "Name" : "LSL",
+                "Type" : "Runtime"
+            } 
+        ]
+}
