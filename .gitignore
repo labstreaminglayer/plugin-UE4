@@ -2,6 +2,7 @@ UE4Editor*
 .fuse*
 Intermediate/*
 UE4-*
+Tests/build*
 
 # Compiled Object files
 *.slo
