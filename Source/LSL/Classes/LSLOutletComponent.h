@@ -4,7 +4,7 @@
 
 #include "Components/SceneComponent.h"
 #include "LSLTypes.h"
-#include "../../ThirdParty/liblsl/include/lsl_c.h"
+#include "../../ThirdParty/liblsl/include/lsl_cpp.h"
 #include "LSLOutletComponent.generated.h"
 
 
@@ -18,9 +18,9 @@ public:
     ULSLOutletComponent();
 
     // Called when the game starts
-    virtual void InitializeComponent() override;
+    virtual void BeginPlay() override;
 
-    virtual void UninitializeComponent() override;
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     // Name of stream. Used to build stream info
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)

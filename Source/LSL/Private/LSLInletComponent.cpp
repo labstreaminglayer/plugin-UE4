@@ -4,6 +4,8 @@
 
 // Sets default values for this component's properties
 ULSLInletComponent::ULSLInletComponent()
+: StreamName("NoName"), StreamType("NoType"),
+  ResolveAttemptInterval(1.0f), tSinceLastResolveAttempt(0.0f)
 {
     bWantsInitializeComponent = true;
     PrimaryComponentTick.bCanEverTick = true;
@@ -51,15 +53,20 @@ void ULSLInletComponent::TickComponent( float DeltaTime, ELevelTick TickType, FA
     }
     else
     {
-        UE_LOG(LogLSL, Log, TEXT("Attempting to resolve stream with predicate %s."), *pred);
-        std::vector<lsl::stream_info> results = lsl::resolve_stream(TCHAR_TO_ANSI(*pred), 1, 0.008);  // Will slow down while resolving non-existent threads.
-        
-        if (!results.empty())
+        tSinceLastResolveAttempt += DeltaTime;
+        if (tSinceLastResolveAttempt >= ResolveAttemptInterval)
         {
-            UE_LOG(LogLSL, Log, TEXT("Stream found. Creating inlet."));
-            my_inlet = new lsl::stream_inlet(results[0]);
-            //TODO: Choose DataArray based on my_inlet->info().channel_format()
-            FloatDataArray.SetNumZeroed(my_inlet->info().channel_count());
+            tSinceLastResolveAttempt = 0.0f;
+            UE_LOG(LogLSL, Log, TEXT("Attempting to resolve stream with predicate %s."), *pred);
+            std::vector<lsl::stream_info> results = lsl::resolve_stream(TCHAR_TO_ANSI(*pred), 1, 1.0/125.0);
+            if (!results.empty())
+            {
+                UE_LOG(LogLSL, Log, TEXT("Stream found. Creating inlet."));
+                my_inlet = new lsl::stream_inlet(results[0]);
+                //TODO: Choose DataArray based on my_inlet->info().channel_format()
+                FloatDataArray.SetNumZeroed(my_inlet->info().channel_count());
+            }
         }
+        
     }
 }

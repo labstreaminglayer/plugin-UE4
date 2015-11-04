@@ -12,9 +12,9 @@ ULSLOutletComponent::ULSLOutletComponent()
 }
 
 // Called when the game starts
-void ULSLOutletComponent::InitializeComponent()
+void ULSLOutletComponent::BeginPlay()
 {
-    Super::InitializeComponent();
+    Super::BeginPlay();
     //lsl_streaminfo lsl_myinfo = lsl_create_streaminfo(TCHAR_TO_ANSI(*StreamName), TCHAR_TO_ANSI(*StreamType), ChannelCount, SamplingRate, (lsl_channel_format_t)ChannelFormat, TCHAR_TO_ANSI(*StreamID));
     UE_LOG(LogLSL, Log, TEXT("Attempting to create stream outlet with name %s, type %s, channel count %d, sampling rate %d."), *StreamName, *StreamType, ChannelCount, SamplingRate);
     lsl::stream_info data_info(TCHAR_TO_ANSI(*StreamName), TCHAR_TO_ANSI(*StreamType), (int16)ChannelCount, (double)SamplingRate, lsl::channel_format_t(ChannelFormat), TCHAR_TO_ANSI(*StreamID));
@@ -30,14 +30,14 @@ void ULSLOutletComponent::InitializeComponent()
     my_outlet = new lsl::stream_outlet(data_info);
 }
 
-void ULSLOutletComponent::UninitializeComponent()
+void ULSLOutletComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-    Super::UninitializeComponent();
     if (my_outlet != nullptr)
     {
         delete my_outlet;
         my_outlet = nullptr;
     }
+    Super::EndPlay(EndPlayReason);
 }
 
 //push_sample functions
