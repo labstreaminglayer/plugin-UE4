@@ -307,7 +307,7 @@ namespace lsl {
         * @param max_buffered Optionally the maximum amount of data to buffer (in seconds if there is a nominal 
         *                     sampling rate, otherwise x100 in samples). The default is 6 minutes of data. 
         */
-        stream_outlet(const stream_info &info, int chunk_size=0, int max_buffered=360): obj(lsl_create_outlet(info.handle(),chunk_size,max_buffered)), channel_count(info.channel_count()) {}
+        stream_outlet(const stream_info &info, int chunk_size=0, int max_buffered=360): channel_count(info.channel_count()), obj(lsl_create_outlet(info.handle(),chunk_size,max_buffered)) {}
 
 
         // ========================================
@@ -600,9 +600,9 @@ namespace lsl {
             if (N != channel_count)
                 throw std::runtime_error("Provided element count does not match the stream's channel count.");
         }
-        
-        lsl_outlet obj;
+
         int channel_count;
+        lsl_outlet obj;
     };
 
 
@@ -684,7 +684,7 @@ namespace lsl {
         *                In all other cases (recover is false or the stream is not recoverable) functions may throw a 
         *                lost_error if the stream's source is lost (e.g., due to an app or computer crash).
         */
-        stream_inlet(const stream_info &info, int max_buflen=360, int max_chunklen=0, bool recover=true): obj(lsl_create_inlet(info.handle(),max_buflen,max_chunklen,recover)), channel_count(info.channel_count()) {}
+        stream_inlet(const stream_info &info, int max_buflen=360, int max_chunklen=0, bool recover=true): channel_count(info.channel_count()), obj(lsl_create_inlet(info.handle(),max_buflen,max_chunklen,recover)) {}
 
         /** 
         * Destructor.
@@ -990,9 +990,9 @@ namespace lsl {
         // The inlet is a non-copyable object.
         stream_inlet(const stream_inlet &rhs);
         stream_inlet &operator=(const stream_inlet &rhs);
-        
-        lsl_inlet obj;
+
         int channel_count;
+        lsl_inlet obj;
     };
 
 
