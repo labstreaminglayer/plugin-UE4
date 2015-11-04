@@ -576,7 +576,7 @@ namespace lsl {
         * Wait until some consumer shows up (without wasting resources).
         * @return True if the wait was successful, false if the timeout expired.
         */
-        bool wait_for_consumers(double timeout) { lsl_wait_for_consumers(obj,timeout); }
+        bool wait_for_consumers(double timeout) { return lsl_wait_for_consumers(obj,timeout); }
 
         /**
         * Retrieve the stream info provided by this outlet.
@@ -600,9 +600,9 @@ namespace lsl {
             if (N != channel_count)
                 throw std::runtime_error("Provided element count does not match the stream's channel count.");
         }
-
-        int channel_count;
+        
         lsl_outlet obj;
+        int channel_count;
     };
 
 
@@ -915,6 +915,7 @@ namespace lsl {
                 }
                 return num;
             };
+            return 0;
         }
 
         /**
@@ -989,9 +990,9 @@ namespace lsl {
         // The inlet is a non-copyable object.
         stream_inlet(const stream_inlet &rhs);
         stream_inlet &operator=(const stream_inlet &rhs);
-
-        int channel_count;
+        
         lsl_inlet obj;
+        int channel_count;
     };
 
 
