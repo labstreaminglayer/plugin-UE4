@@ -1,6 +1,7 @@
 #include "LSLPrivatePCH.h"
 #include "LSLInletComponent.h"
 #include <string>
+#include <iostream>
 
 // Sets default values for this component's properties
 ULSLInletComponent::ULSLInletComponent()
@@ -12,9 +13,9 @@ ULSLInletComponent::ULSLInletComponent()
 }
 
 // Called when the game starts
-void ULSLInletComponent::InitializeComponent()
+void ULSLInletComponent::BeginPlay()
 {
-    Super::InitializeComponent();
+    Super::BeginPlay();
     if (StreamName != FString(TEXT("")))
     {
         pred += "name='" + StreamName + "'";
@@ -25,14 +26,14 @@ void ULSLInletComponent::InitializeComponent()
     }
 }
 
-void ULSLInletComponent::UninitializeComponent()
+void ULSLInletComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-    if (my_inlet)
+    if (my_inlet != nullptr)
     {
         delete my_inlet;
         my_inlet = nullptr;
     }
-    Super::UninitializeComponent();
+    Super::EndPlay(EndPlayReason);
 }
 
 // Called every frame
@@ -45,6 +46,7 @@ void ULSLInletComponent::TickComponent( float DeltaTime, ELevelTick TickType, FA
         //TODO: Choose DataArray based on my_inlet->info().channel_format()
         double timestamp = my_inlet->pull_sample(FloatDataArray.GetData(), FloatDataArray.Num(), 0.0);
         //UE_LOG(LogLSL, Log, TEXT("Pulled sample with timestamp %f"), timestamp);
+        std::cout << "Timestamp" << timestamp << std::endl;
         if (timestamp > 0.0)
         {
             //TODO: Choose delegate to broadcast based on my_inlet->info().channel_format()

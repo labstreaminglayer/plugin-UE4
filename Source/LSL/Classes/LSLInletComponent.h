@@ -17,9 +17,9 @@ public:
     ULSLInletComponent();
 
     // Called when the game starts
-    virtual void InitializeComponent() override;
-    
-    virtual void UninitializeComponent() override;
+    virtual void BeginPlay() override;
+
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     // Called every frame
     virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
