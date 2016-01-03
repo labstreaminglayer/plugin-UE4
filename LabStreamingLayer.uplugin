@@ -3,7 +3,7 @@
     "FriendlyName" : "LabStreamingLayer Plugin",
     "Version" : 1,
     "VersionName": "0.1",
-    "EngineVersion" : "4.7",
+    "EngineVersion" : "4.10.1",
     "Description" : "Inlet/Outlet for LabStreamingLayer",
     "Category" : "LSL.InOut",
     "CreatedBy" : "Chadwick Boulay",
