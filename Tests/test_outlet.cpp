@@ -2,12 +2,15 @@
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define NCHANNELS 1
 
 int main(int argc, char* argv[]) {
 	std::string name = "TestOutlet";
 	std::string type = "ControlSignal";
+    
+    int flip_flop = 1;
 	
 	try {
 
@@ -27,8 +30,10 @@ int main(int argc, char* argv[]) {
 			float sample[NCHANNELS];
 			for (int c = 0; c < NCHANNELS; c++)
 			{
-				// Random value between -1 and +1
-				sample[c] = (2.0 * ((float)rand() / (float)RAND_MAX)) - 1.0;
+                flip_flop = fmod(((double)clock())/CLOCKS_PER_SEC, 4) >= 2.0;
+                
+				// Random value between -0.5 and +0.5 or between +0.5 and +1.5
+				sample[c] = ((float)rand() / (float)RAND_MAX) - 0.5 + flip_flop;
 			}
 			
 			// send the sample
