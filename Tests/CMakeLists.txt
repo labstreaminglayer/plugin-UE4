@@ -20,16 +20,18 @@ ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 		optimized "${LSL_BINDIR}/liblsl64.dylib"
 		debug "${LSL_BINDIR}/liblsl64-debug.dylib")
 ENDIF()
-include_directories(${CMAKE_CURRENT_LIST_DIR}/../ThirdParty/liblsl/include)
+SET(LSL_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/../ThirdParty/liblsl/include)
 
 #
 # TEST OUTLET
 #
 add_executable(test_outlet ${CMAKE_CURRENT_LIST_DIR}/test_outlet.cpp)
+target_include_directories(test_outlet PRIVATE ${LSL_INCLUDE_DIR})
 target_link_libraries(test_outlet ${LSL_LIBRARY})
 
 #
 # TEST INLET
 #
 add_executable(test_inlet ${CMAKE_CURRENT_LIST_DIR}/test_inlet.cpp)
+target_include_directories(test_inlet PRIVATE ${LSL_INCLUDE_DIR})
 target_link_libraries(test_inlet ${LSL_LIBRARY})
