@@ -45,6 +45,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     FString StreamID;
 
+	UPROPERTY(EditAnywhere, Category = LSL)
+	TArray<FString> Channels;
+
     UFUNCTION(BlueprintCallable, Category = LSL)
     void PushSampleFloat(TArray<float> data);
 

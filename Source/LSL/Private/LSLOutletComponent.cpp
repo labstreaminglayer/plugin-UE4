@@ -19,12 +19,12 @@ void ULSLOutletComponent::BeginPlay()
     UE_LOG(LogLSL, Log, TEXT("Attempting to create stream outlet with name %s, type %s, channel count %d, sampling rate %d."), *StreamName, *StreamType, ChannelCount, SamplingRate);
     lsl::stream_info data_info(TCHAR_TO_ANSI(*StreamName), TCHAR_TO_ANSI(*StreamType), (int16)ChannelCount, (double)SamplingRate, lsl::channel_format_t(ChannelFormat), TCHAR_TO_ANSI(*StreamID));
     lsl::xml_element channels = data_info.desc().append_child("channels");
-    for (int k=0; k<ChannelCount; k++)
-    {
-        channels.append_child("channel")
-            .append_child_value("type","UE4")
-            .append_child_value("unit","float");  //TODO: Different data types.
-    }
+	for (auto& ch : Channels)
+	{
+		channels.append_child("channel")
+			.append_child_value("label", TCHAR_TO_UTF8(*(ch)))
+			.append_child_value("unit", "float");  //TODO: Different data types.
+	}
     
     //TODO: Check to see if the stream already exists.
     my_outlet = new lsl::stream_outlet(data_info);
