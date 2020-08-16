@@ -1,18 +1,24 @@
 {
-    "FileVersion" : 1,
-    "FriendlyName" : "LabStreamingLayer Plugin",
-    "Version" : 1,
-    "VersionName": "0.1",
-    "EngineVersion" : "4.10.1",
-    "Description" : "Inlet/Outlet for LabStreamingLayer",
-    "Category" : "LSL.InOut",
-    "CreatedBy" : "Chadwick Boulay",
-    "CreatedByURL" : "",
-    "Modules" :
-        [
-            {
-                "Name" : "LSL",
-                "Type" : "Runtime"
-            } 
-        ]
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.2",
+  "FriendlyName": "LabStreamingLayer Plugin",
+  "Description": "Inlet/Outlet for LabStreamingLayer",
+  "Category": "LSL.InOut",
+  "CreatedBy": "Chadwick Boulay",
+  "CreatedByURL": "",
+  "DocsURL": "",
+  "MarketplaceURL": "",
+  "SupportURL": "",
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": false,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "LSL",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
 }

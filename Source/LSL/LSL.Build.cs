@@ -23,18 +23,16 @@ public class LSL : ModuleRules
 
     private string LibraryPath
     {
+        get { return Path.GetFullPath(Path.Combine(ThirdPartyPath, "liblsl", "lib")); }
+    }
+
+    private string DllPath
+    {
         get { return Path.GetFullPath(Path.Combine(ThirdPartyPath, "liblsl", "bin")); }
     }
 
-    public LSL(TargetInfo Target)
+    public LSL(ReadOnlyTargetRules Target) : base(Target)
     {
-
-        PublicLibraryPaths.Add(LibraryPath);
-        if (Target.Platform == UnrealTargetPlatform.Mac)
-        {
-            PublicLibraryPaths.Add(BinariesPath);
-        }
-
         PrivateIncludePaths.AddRange(new string[]
         {
             "LSL/Private",
@@ -46,6 +44,7 @@ public class LSL : ModuleRules
         {
             "LSL/Public",
             "LSL/Classes",
+            Path.Combine(ThirdPartyPath, "liblsl", "include"),
             // ... add public include paths required here ...
         });
 
@@ -55,6 +54,7 @@ public class LSL : ModuleRules
             "Core",
             "CoreUObject",
             "InputCore",
+            "Projects",
             // ... add other public dependencies that you statically link with here ...
         });
 
@@ -72,25 +72,14 @@ public class LSL : ModuleRules
         LoadLSLLib(Target);
     }
 
-    public bool LoadLSLLib(TargetInfo Target)
+    public bool LoadLSLLib(ReadOnlyTargetRules Target)
     {
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
-            PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "liblsl64.lib"));
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Win32)
-        {
-            PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "liblsl32.lib"));
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Mac)
-        {
-            PublicAdditionalLibraries.Add(Path.Combine(BinariesPath, "Mac", "liblsl64.dylib"));
-            //PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "liblsl64.dylib"));
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Linux)
-        {
-            PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "liblsl64.so"));
-        }
+            PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "lsl.lib"));
+            PublicDelayLoadDLLs.Add("lsl.dll");
+            RuntimeDependencies.Add(Path.Combine(DllPath, "bin", "lsl.dll"));
+		}
 
         return true;
 

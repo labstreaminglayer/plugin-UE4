@@ -4,7 +4,10 @@
 
 #include "Components/SceneComponent.h"
 #include "LSLTypes.h"
-#include "../../ThirdParty/liblsl/include/lsl_cpp.h"
+#pragma warning (push)
+#pragma warning (disable: 4800)
+#include "lsl_cpp.h"
+#pragma warning (pop)
 #include "LSLOutletComponent.generated.h"
 
 
