@@ -32,9 +32,6 @@ public:
     // Type of stream. Used to build stream info
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     FString StreamType;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
-    int32 ChannelCount;
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     float SamplingRate;
