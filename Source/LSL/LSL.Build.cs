@@ -78,7 +78,7 @@ public class LSL : ModuleRules
         {
             PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "lsl.lib"));
             PublicDelayLoadDLLs.Add("lsl.dll");
-            RuntimeDependencies.Add(Path.Combine(DllPath, "bin", "lsl.dll"));
+            RuntimeDependencies.Add(Path.Combine(DllPath, "lsl.dll"));
 		}
 
         return true;
