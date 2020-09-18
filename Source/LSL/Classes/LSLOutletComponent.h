@@ -4,7 +4,10 @@
 
 #include "Components/SceneComponent.h"
 #include "LSLTypes.h"
-#include "../../ThirdParty/liblsl/include/lsl_cpp.h"
+#pragma warning (push)
+#pragma warning (disable: 4800)
+#include "lsl_cpp.h"
+#pragma warning (pop)
 #include "LSLOutletComponent.generated.h"
 
 
@@ -29,9 +32,6 @@ public:
     // Type of stream. Used to build stream info
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     FString StreamType;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
-    int32 ChannelCount;
     
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     float SamplingRate;
@@ -41,6 +41,9 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     FString StreamID;
+
+	UPROPERTY(EditAnywhere, Category = LSL)
+	TArray<FString> Channels;
 
     UFUNCTION(BlueprintCallable, Category = LSL)
     void PushSampleFloat(TArray<float> data);

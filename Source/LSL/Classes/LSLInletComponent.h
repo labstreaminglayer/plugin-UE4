@@ -3,6 +3,10 @@
 #pragma once
 
 #include "Components/SceneComponent.h"
+#pragma warning (push)
+#pragma warning (disable: 4800)
+#include "lsl_cpp.h"
+#pragma warning (pop)
 #include "LSLTypes.h"
 #include "LSLInletComponent.generated.h"
 
