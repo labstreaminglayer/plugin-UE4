@@ -43,7 +43,7 @@ public:
     FString StreamID;
 
 	UPROPERTY(EditAnywhere, Category = LSL)
-	TArray<FString> Channels;
+	TArray<FChannelData> Channels;
 
     UFUNCTION(BlueprintCallable, Category = LSL)
     void PushSampleFloat(TArray<float> data);

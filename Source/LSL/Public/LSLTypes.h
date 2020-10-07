@@ -21,6 +21,15 @@ enum class EChannelFormat : uint8
     cfmt_int64       =7  UMETA(DisplayName="int64")
 };
 
+USTRUCT(BlueprintType)
+struct FChannelData
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere) FString Label;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere) FString Unit;
+};
+
 UCLASS()
 class ULSLTypes : public UObject
 {

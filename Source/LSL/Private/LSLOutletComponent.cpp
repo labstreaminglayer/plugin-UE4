@@ -33,8 +33,8 @@ void ULSLOutletComponent::BeginPlay()
 	for (auto& ch : Channels)
 	{
 		channels.append_child("channel")
-			.append_child_value("label", TCHAR_TO_UTF8(*(ch)))
-			.append_child_value("unit", "float");  //TODO: Different data types.
+			.append_child_value("label", TCHAR_TO_UTF8(*(ch.Label)))
+			.append_child_value("unit", TCHAR_TO_UTF8(*(ch.Unit)));
 	}
     
     //TODO: Check to see if the stream already exists.
