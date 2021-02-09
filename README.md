@@ -9,13 +9,15 @@ LabStreamingLayer [plugin for Unreal Engine 4](https://docs.unrealengine.com/en-
 
 ## Install
 
-This plugin isn't (yet?) on the marketplace. To add it to your project, copy this entire folder into your `/[Project Root]/Plugins/` folder. If you want to use this plugin across multiple projects, it might be better to place it in your `/[UE4 Root]/Engine/Plugins/` folder. The UE4 Editor must be restarted after moving the plugin. You may be asked to rebuild the module when the editor relaunches; please choose "Yes" to rebuild.
+This plugin isn't (yet?) on the marketplace. To add it to your project, copy this entire folder into your `/[Project Root]/Plugins/` folder or you can even git clone it in there: `[Project Root]\Plugins> git clone https://github.com/labstreaminglayer/plugin-UE4.git LSL`. If you want to use this plugin across multiple projects, it might be better to place it in your `/[UE4 Root]/Engine/Plugins/` folder. The UE4 Editor must be restarted after moving the plugin. You may be asked to rebuild the module when the editor relaunches; please choose "Yes" to rebuild.
 
 To verify the plugin is installed, open the Plugins menu (Edit > Plugins) and the plugin should be listed under the "Input Devices" category, possibly under the Project section at the bottom.
 
 ## Using LSL in a UE4 project
 
-Here are some simple step-by-step instructions to a minimal LSL integration in a UE4 project.
+### Receiving external data with an LSL Inlet
+
+Here are some simple step-by-step instructions to a minimal LSL Inlet integration in a UE4 project.
 
 0. Run a LSL stream on your network. It must have a `float` data type (and for this example, at least 2 channels).
 1. Place an Actor (e.g. Cube) into the scene at Location (250, 0, 100).
@@ -35,6 +37,25 @@ Here are some simple step-by-step instructions to a minimal LSL integration in a
 15. Run the game and the cube should move according to the input.
 
 ![LSL Inlet](https://github.com/labstreaminglayer/plugin-UE4/raw/master/Resources/LSLInput.PNG "LSL Inlet in UE4")
+
+### Sending event markers out with an LSL Outlet
+
+We are going to use overlap events in a sphere object to trigger sending markers over LSL. We need a way to have transient overlap events, both for onset and offset. I am going to use the cube from the inlet example above that will move (via LSL Inlet data) to overlap the target sphere, but you could use anything you want to create the overlap events.
+
+1. Place a Sphere actor into the scene at (250, -150, 100).
+2. Create and edit its Blueprint.
+3. Add a LSLOutlet component.
+4. Edit the LSLOutlet details. Stream Name: "UE4 Sphere"; Stream Type: "Markers"; Sampling Rate: 0.0; Channel Format: `string`. Add a Channel.
+5. Drag and drop the LSLOutlet component onto the event graph.
+6. From its instance node, drag off and create a "Push Sample String" node.
+7. Wire the "Event ActorBeginOverlap" node to the Push Sample String node.
+8. Drag off from the Push Sample String Node's "Data" port, and add a "Make Array" node.
+9. Edit the Make Array first element to whatever string you want to indicate begin overlap. Try "Ouch!". (You could also wire in public variables so you could set these strings from the Editor.)
+10. Repeat steps 5-9 except for "ActorEndOverlap".
+11. Make sure the actor and the object that will overlap with it both have their collision setup properly. [See here for more info.](https://docs.unrealengine.com/en-US/InteractiveExperiences/Physics/Collision/Overview/index.html) Briefly, they both need "Generate Overlap Events" checked and the collision settings need Overlap checked for "World Dynamic".
+12. Run the game and view the strings in another process with LSL. If you have Python and pylsl installed, this is as simple as `python -m pylsl.examples.ReceiveStringMarkers`
+
+![LSL Outlet](https://github.com/labstreaminglayer/plugin-UE4/raw/master/Resources/LSLOutput.PNG "LSL Outlet in UE4")
 
 # Known Issues
 
