@@ -1,24 +1,24 @@
 {
-  "FileVersion": 3,
-  "Version": 1,
-  "VersionName": "0.2",
-  "FriendlyName": "LabStreamingLayer Plugin",
-  "Description": "Inlet/Outlet for LabStreamingLayer",
-  "Category": "LSL.InOut",
-  "CreatedBy": "Chadwick Boulay",
-  "CreatedByURL": "",
-  "DocsURL": "",
-  "MarketplaceURL": "",
-  "SupportURL": "",
-  "CanContainContent": true,
-  "IsBetaVersion": false,
-  "IsExperimentalVersion": false,
-  "Installed": false,
-  "Modules": [
-    {
-      "Name": "LSL",
-      "Type": "Runtime",
-      "LoadingPhase": "Default"
-    }
-  ]
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "LabStreamingLayer Plugin",
+	"Description": "Inlet/Outlet for LabStreamingLayer",
+	"Category": "Input Devices",
+	"CreatedBy": "Chadwick Boulay",
+	"CreatedByURL": "",
+	"DocsURL": "https://labstreaminglayer.readthedocs.io/",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "LSL",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
 }
