@@ -11,6 +11,7 @@
 #include "LSLInletComponent.generated.h"
 
 
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LSL_API ULSLInletComponent : public USceneComponent
 {
@@ -43,13 +44,9 @@ public:
     // TODO: More types of DataArrays
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = LSL)
     TArray<float> FloatDataArray;
-    
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = LSL)
-    float ResolveAttemptInterval;
 
 protected:
     
-    FString pred;
     lsl::stream_inlet *my_inlet;
-    float tSinceLastResolveAttempt;
+    lsl::continuous_resolver* my_resolver;
 };
