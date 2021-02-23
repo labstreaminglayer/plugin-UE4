@@ -9,13 +9,17 @@ LabStreamingLayer [plugin for Unreal Engine 4](https://docs.unrealengine.com/en-
 
 ## Install
 
-This plugin isn't (yet?) on the marketplace. To add it to your project, copy this entire folder into your `/[Project Root]/Plugins/` folder or you can even git clone it in there: `[Project Root]\Plugins> git clone https://github.com/labstreaminglayer/plugin-UE4.git LSL`. If you want to use this plugin across multiple projects, it might be better to place it in your `/[UE4 Root]/Engine/Plugins/` folder. The UE4 Editor must be restarted after moving the plugin. You may be asked to rebuild the module when the editor relaunches; please choose "Yes" to rebuild.
+This plugin isn't (yet?) on the marketplace. To add it to your project, copy this entire folder into your `/[Project Root]/Plugins/` folder or you can even git clone it in there: `[Project Root]\Plugins> git clone https://github.com/labstreaminglayer/plugin-UE4.git LSL` or `git submodule add https://github.com/labstreaminglayer/plugin-UE4.git LSL` if you are already working in a git repo. If you want to use this plugin across multiple projects, it might be better to place it in your `/[UE4 Root]/Engine/Plugins/` folder. The UE4 Editor must be restarted after moving the plugin. You may be asked to rebuild the module when the editor relaunches; please choose "Yes" to rebuild.
 
 To verify the plugin is installed, open the Plugins menu (Edit > Plugins) and the plugin should be listed under the "Input Devices" category, possibly under the Project section at the bottom.
 
 ## Using LSL in a UE4 project
 
 ### Receiving external data with an LSL Inlet
+
+Inlets are available as 'scene components'. Typically that means attaching such a component to an object that needs access to a LSL data stream. The inlet component must be configured so that its [`continuous_resolver`](https://github.com/sccn/liblsl/blob/master/include/lsl_cpp.h#L1754-L1762) member can search for the desired stream. On every tick, the resolver checks to see if that stream is found and, if so, it creates its [`stream_inlet`](https://github.com/sccn/liblsl/blob/master/include/lsl_cpp.h#L1004-L1011) member and the resolver is deleted. On subsequent ticks the data will be pulled from the inlet then broadcast to `OnStreamUpdatedFloat`.
+
+Multiple different objects can each have a unique inlet to the same stream. This isn't very efficient because it means extra data buffers and tcp/ip communication for each object accessing that stream. If you find that you have multiple objects that need to access the same stream, it is instead better to group those objects under a parent object with a single LSLInlet component, then the child objects can bind to the OnStreamUpdatedFloat event.
 
 Here are some simple step-by-step instructions to a minimal LSL Inlet integration in a UE4 project.
 
