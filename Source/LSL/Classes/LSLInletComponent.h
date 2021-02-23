@@ -37,6 +37,14 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     FString StreamType;
 
+    // Maximum buffer length in seconds if there is a nominal sampling rate, otherwise x100 in samples
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    int32 MaxBufLen = 10;
+
+    // The maximum size, in samples, at which chunks are transmitted. (0 = the chunk sizes used by the sender)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    int32 MaxChunkLen = 0;
+
     // Delegate triggered once per frame update for stream
     UPROPERTY(BlueprintAssignable, Category = LSL)
     FLSLStreamUpdatedFloatDelegate OnStreamUpdatedFloat;

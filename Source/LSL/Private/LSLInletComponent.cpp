@@ -72,9 +72,13 @@ void ULSLInletComponent::TickComponent( float DeltaTime, ELevelTick TickType, FA
         if (!results.empty())
         {
             UE_LOG(LogLSL, Log, TEXT("Stream found. Creating inlet."));
-            my_inlet = new lsl::stream_inlet(results[0]);
+            my_inlet = new lsl::stream_inlet(results[0], MaxBufLen, MaxChunkLen);
             //TODO: Choose DataArray based on my_inlet->info().channel_format()
             FloatDataArray.SetNumZeroed(my_inlet->info().channel_count());
+
+            // resolver can rest now
+            delete my_resolver;
+            my_resolver = nullptr;
         }
     }
 }
