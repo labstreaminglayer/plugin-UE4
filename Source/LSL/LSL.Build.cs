@@ -79,9 +79,14 @@ public class LSL : ModuleRules
             PublicAdditionalLibraries.Add(Path.Combine(LibraryPath, "lsl.lib"));
             PublicDelayLoadDLLs.Add("lsl.dll");
             RuntimeDependencies.Add(Path.Combine(DllPath, "lsl.dll"));
-		}
+        }
+        else if (Target.Platform == UnrealTargetPlatform.Mac)
+        {
+            PublicDelayLoadDLLs.Add(Path.Combine(DllPath, "liblsl.dylib"));
+            RuntimeDependencies.Add(Path.Combine(DllPath, "liblsl.dylib"));
+        }
 
-        return true;
+            return true;
 
         //TODO: Copy dll/dylib/so to Project_name\Binaries\Platform\
     }

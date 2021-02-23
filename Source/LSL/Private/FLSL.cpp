@@ -12,7 +12,12 @@ void FLSL::StartupModule()
 
 	// Add on the relative location of the third party dll and load it
 	FString LibraryPath;
+	
+#if PLATFORM_WINDOWS
 	LibraryPath = FPaths::Combine(*BaseDir, TEXT("ThirdParty/liblsl/bin/lsl.dll"));
+#elif PLATFORM_MAC
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("ThirdParty/liblsl/bin/liblsl.dylib"));
+#endif // PLATFORM_WINDOWS
 
 	LibLslHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;
 }
