@@ -6,7 +6,9 @@
 // Delegate types
 //---------------------------------------------------
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FLSLStreamUpdatedStringDelegate, const TArray<FString>&, StringArray, float, DeltaSeconds);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FLSLStreamUpdatedFloatDelegate, const TArray<float>&, FloatArray, float, DeltaSeconds);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FLSLStreamCaughtExceptionDelegate, const FString&, ErrorString);
 
 UENUM(BlueprintType)
 enum class EChannelFormat : uint8

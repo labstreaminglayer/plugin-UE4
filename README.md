@@ -42,6 +42,8 @@ Here are some simple step-by-step instructions to a minimal LSL Inlet integratio
 
 ![LSL Inlet](https://github.com/labstreaminglayer/plugin-UE4/raw/master/Resources/LSLInput.PNG "LSL Inlet in UE4")
 
+If the stream that you are connected to dies then one of two things will happen. If the stream has a UUID then the inlet will persist and simply continue to attempt fetching until the stream reappears. If the stream does not have a UUID then it cannot be reconnected; instead the inlet is destroyed and the resolver is recreated to search for another stream with matching predicate. The latter event will also trigger an error broadcast to the `OnStreamCaughtException` event.
+
 ### Sending event markers out with an LSL Outlet
 
 We are going to use overlap events in a sphere object to trigger sending markers over LSL. We need a way to have transient overlap events, both for onset and offset. I am going to use the cube from the inlet example above that will move (via LSL Inlet data) to overlap the target sphere, but you could use anything you want to create the overlap events.
@@ -63,4 +65,4 @@ We are going to use overlap events in a sphere object to trigger sending markers
 
 # Known Issues
 
-* The LSLInletComponent only supports float data types. Any advice on how to do type templating in UE4 would be appreciated.
+* The LSLInletComponent only supports float, double, and string data types. And the double data will be cast to float before being made available in blueprints.

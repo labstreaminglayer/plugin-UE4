@@ -21,9 +21,6 @@ public:
     // Sets default values for this component's properties
     ULSLInletComponent();
 
-    // Called when the game starts
-    virtual void BeginPlay() override;
-
     virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     // Called every frame
@@ -45,16 +42,30 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
     int32 MaxChunkLen = 0;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = LSL)
+    EChannelFormat StreamDataFormat = EChannelFormat::cfmt_undefined;
+
     // Delegate triggered once per frame update for stream
     UPROPERTY(BlueprintAssignable, Category = LSL)
     FLSLStreamUpdatedFloatDelegate OnStreamUpdatedFloat;
+
+    // Delegate triggered once per frame update for stream
+    UPROPERTY(BlueprintAssignable, Category = LSL)
+    FLSLStreamUpdatedStringDelegate OnStreamUpdatedString;
+
+    UPROPERTY(BlueprintAssignable, Category = LSL)
+    FLSLStreamCaughtExceptionDelegate OnStreamCaughtException;
 
     // TODO: More types of DataArrays
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = LSL)
     TArray<float> FloatDataArray;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = LSL)
+    TArray<FString> StringDataArray;
+
 protected:
-    
     lsl::stream_inlet *my_inlet;
     lsl::continuous_resolver* my_resolver;
+    std::vector<std::string> string_vec;
+    std::vector<double> double_vec;
 };
