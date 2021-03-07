@@ -33,17 +33,19 @@ public class LSL : ModuleRules
 
     public LSL(ReadOnlyTargetRules Target) : base(Target)
     {
+        bEnableExceptions = true;
+        
         PrivateIncludePaths.AddRange(new string[]
         {
-            "LSL/Private",
+            Path.Combine(ModuleDirectory, "Private"),
             Path.Combine(ThirdPartyPath, "liblsl", "include"),
             // ... add other private include paths required here ...
         });
 
         PublicIncludePaths.AddRange(new string[]
         {
-            "LSL/Public",
-            "LSL/Classes",
+            Path.Combine(ModuleDirectory, "Public"),
+            Path.Combine(ModuleDirectory, "Classes"),
             Path.Combine(ThirdPartyPath, "liblsl", "include"),
             // ... add public include paths required here ...
         });
