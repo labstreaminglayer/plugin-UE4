@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Chadwick Boulay
+
 #pragma once
 
 #include "LSLTypes.generated.h"

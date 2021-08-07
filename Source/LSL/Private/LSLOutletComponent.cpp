@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Chadwick Boulay
+
 #include "LSLOutletComponent.h"
 #include "LSLPrivatePCH.h"
 #include <string>

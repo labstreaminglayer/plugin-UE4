@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Chadwick Boulay
+
 using UnrealBuildTool;
 using System.IO;
 
@@ -33,13 +35,13 @@ public class LSL : ModuleRules
 
     public LSL(ReadOnlyTargetRules Target) : base(Target)
     {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
         bEnableExceptions = true;
         
         PrivateIncludePaths.AddRange(new string[]
         {
             Path.Combine(ModuleDirectory, "Private"),
             Path.Combine(ThirdPartyPath, "liblsl", "include"),
-            // ... add other private include paths required here ...
         });
 
         PublicIncludePaths.AddRange(new string[]
@@ -47,7 +49,6 @@ public class LSL : ModuleRules
             Path.Combine(ModuleDirectory, "Public"),
             Path.Combine(ModuleDirectory, "Classes"),
             Path.Combine(ThirdPartyPath, "liblsl", "include"),
-            // ... add public include paths required here ...
         });
 
         PublicDependencyModuleNames.AddRange(new string[]
@@ -57,18 +58,6 @@ public class LSL : ModuleRules
             "CoreUObject",
             "InputCore",
             "Projects",
-            // ... add other public dependencies that you statically link with here ...
-        });
-
-        PrivateDependencyModuleNames.AddRange(new string[]
-        {
-            // ... add private dependencies that you statically link with here ...
-            // "LabStreamingLayer",
-        });
-
-        DynamicallyLoadedModuleNames.AddRange(new string[]
-        {
-            // ... add any modules that your module loads dynamically here ...
         });
 
         LoadLSLLib(Target);
@@ -88,9 +77,7 @@ public class LSL : ModuleRules
             RuntimeDependencies.Add(Path.Combine(DllPath, "liblsl.dylib"));
         }
 
-            return true;
-
-        //TODO: Copy dll/dylib/so to Project_name\Binaries\Platform\
+        return true;
     }
 }
 
