@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+// Copyright (c) 2021 Chadwick Boulay
 
 #pragma once
 

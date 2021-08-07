@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Chadwick Boulay
+
 #include "FLSL.h"
 #include "LSLPrivatePCH.h"
 #include "Interfaces/IPluginManager.h"
