@@ -16,9 +16,9 @@ void FLSL::StartupModule()
 	FString LibraryPath;
 	
 #if PLATFORM_WINDOWS
-	LibraryPath = FPaths::Combine(*BaseDir, TEXT("ThirdParty/liblsl/bin/lsl.dll"));
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Source/ThirdParty/liblsl/bin/lsl.dll"));
 #elif PLATFORM_MAC
-	LibraryPath = FPaths::Combine(*BaseDir, TEXT("ThirdParty/liblsl/bin/liblsl.dylib"));
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Source/ThirdParty/liblsl/bin/liblsl.dylib"));
 #endif // PLATFORM_WINDOWS
 
 	LibLslHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;
