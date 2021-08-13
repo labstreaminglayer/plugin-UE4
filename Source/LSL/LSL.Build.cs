@@ -47,7 +47,6 @@ public class LSL : ModuleRules
         PublicIncludePaths.AddRange(new string[]
         {
             Path.Combine(ModuleDirectory, "Public"),
-            Path.Combine(ModuleDirectory, "Classes"),
             Path.Combine(ThirdPartyPath, "liblsl", "include"),
         });
 
