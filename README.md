@@ -9,7 +9,9 @@ LabStreamingLayer [plugin for Unreal Engine 4](https://docs.unrealengine.com/en-
 
 ## Install
 
-This plugin isn't (yet?) on the marketplace. To add it to your project, copy this entire folder into your `/[Project Root]/Plugins/` folder or you can even git clone it in there: `[Project Root]\Plugins> git clone https://github.com/labstreaminglayer/plugin-UE4.git LSL` or `git submodule add https://github.com/labstreaminglayer/plugin-UE4.git LSL` if you are already working in a git repo. If you want to use this plugin across multiple projects, it might be better to place it in your `/[UE4 Root]/Engine/Plugins/` folder. The UE4 Editor must be restarted after moving the plugin. You may be asked to rebuild the module when the editor relaunches; please choose "Yes" to rebuild.
+This plugin is also available on the [Marketplace](https://www.unrealengine.com/marketplace/en-US/product/labstreaminglayer-plugin).
+
+To add it to your project, copy this entire folder into your `/[Project Root]/Plugins/` folder or you can even git clone it in there: `[Project Root]\Plugins> git clone https://github.com/labstreaminglayer/plugin-UE4.git LSL` or `git submodule add https://github.com/labstreaminglayer/plugin-UE4.git LSL` if you are already working in a git repo. If you want to use this plugin across multiple projects, it might be better to place it in your `/[UE4 Root]/Engine/Plugins/` folder. The UE4 Editor must be restarted after moving the plugin. You may be asked to rebuild the module when the editor relaunches; please choose "Yes" to rebuild.
 
 To verify the plugin is installed, open the Plugins menu (Edit > Plugins) and the plugin should be listed under the "Input Devices" category, possibly under the Project section at the bottom.
 
