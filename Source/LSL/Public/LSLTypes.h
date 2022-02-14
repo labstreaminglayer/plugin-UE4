@@ -30,8 +30,8 @@ struct FChannelData
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere) FString Label;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere) FString Unit;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = LSL) FString Label;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = LSL) FString Unit;
 };
 
 UCLASS()
