@@ -4,6 +4,7 @@ UnrealEditor*
 Intermediate/*
 UE4-*
 Tests/build*
+*.zip
 
 # Compiled Object files
 *.slo
