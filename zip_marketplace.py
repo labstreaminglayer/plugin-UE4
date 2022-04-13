@@ -21,4 +21,4 @@ def zip(dest):
                     continue
                 zipf.write(os.path.join(root, file), relpath)
 
-zip('UE4-LSL.zip')
+zip('UE5-LSL.zip')
