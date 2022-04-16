@@ -1,9 +1,9 @@
 # lsl-ue4
 
-LabStreamingLayer [plugin for Unreal Engine 4](https://docs.unrealengine.com/en-US/ProductionPipelines/Plugins/index.html)
+LabStreamingLayer [plugin for Unreal Engine](https://docs.unrealengine.com/en-US/ProductionPipelines/Plugins/index.html)
 
 * LSL 1.14.0
-* UE 4.26, 4.27
+* UE 4.26, 4.27, 5.0
 
 # Usage Instructions
 
