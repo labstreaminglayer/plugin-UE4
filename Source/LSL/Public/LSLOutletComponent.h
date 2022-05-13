@@ -70,6 +70,6 @@ public:
 
 protected:
 
-    lsl::stream_outlet *my_outlet;
+    lsl::stream_outlet *my_outlet = nullptr;
 
 };

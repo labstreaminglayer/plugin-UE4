@@ -56,6 +56,7 @@ void ULSLOutletComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 //push_sample functions
 void ULSLOutletComponent::PushSampleFloat(TArray<float> data)
 {
+	if (my_outlet == nullptr) return;
     my_outlet->push_sample(data.GetData());
 }
 
@@ -69,6 +70,7 @@ void ULSLOutletComponent::PushSampleDouble(TArray<double> data)
 
 void ULSLOutletComponent::PushSampleLong(TArray<int32> data)
 {
+	if (my_outlet == nullptr) return;
     my_outlet->push_sample(data.GetData());
 }
 
@@ -88,6 +90,7 @@ void ULSLOutletComponent::PushSampleShort(TArray<int16> data)
 
 void ULSLOutletComponent::PushSampleString(TArray<FString> data)
 {
+	if (my_outlet == nullptr) return;
     std::vector<std::string> strVec;
     int32 b;
     for(b=0; b < data.Num(); b++)
