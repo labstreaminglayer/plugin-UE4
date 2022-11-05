@@ -26,23 +26,23 @@ public:
     virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     // Name of stream. Used to build stream info
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = LSL, meta = (ExposeOnSpawn = "true"))
     FString StreamName;
 
     // Type of stream. Used to build stream info
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
     FString StreamType;
     
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
     float SamplingRate;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
     EChannelFormat ChannelFormat;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
     FString StreamID;
 
-	UPROPERTY(EditAnywhere, Category = LSL)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
 	TArray<FChannelData> Channels;
 
     UFUNCTION(BlueprintCallable, Category = LSL)
