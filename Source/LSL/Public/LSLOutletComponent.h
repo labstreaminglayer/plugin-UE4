@@ -11,7 +11,7 @@
 #include "LSLOutletComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LSL_API ULSLOutletComponent : public USceneComponent
 {
     GENERATED_BODY()
