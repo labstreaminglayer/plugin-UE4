@@ -3,7 +3,7 @@
 LabStreamingLayer [plugin for Unreal Engine](https://docs.unrealengine.com/en-US/ProductionPipelines/Plugins/index.html)
 
 * LSL 1.14.0
-* UE 4.26, 4.27, 5.0
+* UE 4.26 to 5.1
 
 # Usage Instructions
 
