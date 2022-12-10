@@ -26,7 +26,7 @@ public:
     virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     // Name of stream. Used to build stream info
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = LSL, meta = (ExposeOnSpawn = "true"))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
     FString StreamName;
 
     // Type of stream. Used to build stream info
