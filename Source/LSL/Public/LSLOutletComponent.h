@@ -68,9 +68,24 @@ public:
     UFUNCTION(BlueprintCallable, Category = LSL)
     void PushSampleChar(TArray<char> data);
     */
+	template<typename T>
+	void PushSample(TArray<T> data);
 
 protected:
 
     lsl::stream_outlet *my_outlet = nullptr;
 
 };
+
+template<typename T>
+inline void ULSLOutletComponent::PushSample(TArray<T> data) {
+	if (my_outlet == nullptr) {
+		UE_LOG(LogLSL, Warning, TEXT("%s outlet isn't valid, can't push sample"), *(GetFName().ToString()));
+		return;
+	}
+	if (data.Num() == 0) {
+		UE_LOG(LogLSL, Warning, TEXT("Trying to push empty sample to %s, skipping"), *(GetFName().ToString()));
+		return;
+	}
+	my_outlet->push_sample(data.GetData());
+}
