@@ -5,6 +5,7 @@
 #include "Components/SceneComponent.h"
 #pragma warning (push)
 #pragma warning (disable: 4800)
+#define LSL_CPP11 1
 #include "lsl_cpp.h"
 #pragma warning (pop)
 #include "LSLTypes.h"
