@@ -10,7 +10,7 @@
 	"DocsURL": "https://labstreaminglayer.readthedocs.io/",
 	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/e204576bd4de4bfdaad28c06133def5c",
 	"SupportURL": "https://github.com/labstreaminglayer/plugin-UE4",
-	"EngineVersion": "5.1",
+	"EngineVersion": "5.2",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
