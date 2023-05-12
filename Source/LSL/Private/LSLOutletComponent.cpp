@@ -56,8 +56,7 @@ void ULSLOutletComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 //push_sample functions
 void ULSLOutletComponent::PushSampleFloat(TArray<float> data)
 {
-	if (my_outlet == nullptr) return;
-    my_outlet->push_sample(data.GetData());
+	PushSample<float>(data);
 }
 
 
@@ -70,8 +69,7 @@ void ULSLOutletComponent::PushSampleDouble(TArray<double> data)
 
 void ULSLOutletComponent::PushSampleLong(TArray<int32> data)
 {
-	if (my_outlet == nullptr) return;
-    my_outlet->push_sample(data.GetData());
+	PushSample<int32>(data);
 }
 
 /*
