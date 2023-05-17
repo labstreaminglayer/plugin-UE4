@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LogLSL, All, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogLSL, Log, All);
 
 /**
  * The public interface to this module.
