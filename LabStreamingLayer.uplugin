@@ -21,8 +21,7 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault",
 			"WhitelistPlatforms": [
-				"Win64",
-				"Mac"
+				"Win64"
 			]
 		}
 	]
