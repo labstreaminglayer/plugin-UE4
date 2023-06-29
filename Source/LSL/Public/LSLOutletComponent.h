@@ -74,13 +74,13 @@ public:
 
 protected:
 
-    lsl::stream_outlet *my_outlet = nullptr;
+	TSharedPtr<lsl::stream_outlet> my_outlet = nullptr;
 
 };
 
 template<typename T>
 inline void ULSLOutletComponent::PushSample(TArray<T> data) {
-	if (my_outlet == nullptr) {
+	if (!my_outlet.IsValid()) {
 		UE_LOG(LogLSL, Warning, TEXT("%s outlet isn't valid, can't push sample"), *(GetFName().ToString()));
 		return;
 	}

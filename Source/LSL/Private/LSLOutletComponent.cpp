@@ -40,14 +40,12 @@ void ULSLOutletComponent::BeginPlay()
 	}
     
     //TODO: Check to see if the stream already exists.
-    my_outlet = new lsl::stream_outlet(data_info);
+    my_outlet = TSharedPtr<lsl::stream_outlet>(new lsl::stream_outlet(data_info));
 }
 
 void ULSLOutletComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-    if (my_outlet != nullptr)
-    {
-        delete my_outlet;
+    if (my_outlet.IsValid()) {
         my_outlet = nullptr;
     }
     Super::EndPlay(EndPlayReason);
@@ -88,7 +86,7 @@ void ULSLOutletComponent::PushSampleShort(TArray<int16> data)
 
 void ULSLOutletComponent::PushSampleString(TArray<FString> data)
 {
-	if (my_outlet == nullptr) return;
+	if (!my_outlet.IsValid()) return;
     std::vector<std::string> strVec;
     int32 b;
     for(b=0; b < data.Num(); b++)
