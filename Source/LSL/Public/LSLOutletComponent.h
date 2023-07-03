@@ -88,5 +88,9 @@ inline void ULSLOutletComponent::PushSample(TArray<T> data) {
 		UE_LOG(LogLSL, Warning, TEXT("Trying to push empty sample to %s, skipping"), *(GetFName().ToString()));
 		return;
 	}
+	if (data.Num() != Channels.Num()) {
+		UE_LOG(LogLSL, Warning, TEXT("Trying to push sample with invalid size to %s, skipping"), *(GetFName().ToString()));
+		return;
+	}
 	my_outlet->push_sample(data.GetData());
 }
