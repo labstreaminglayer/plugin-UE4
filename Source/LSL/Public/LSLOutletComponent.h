@@ -27,6 +27,12 @@ public:
 
     virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	/**
+	* Whether to automatically initialize the outlet on BeginPlay or to do it manually
+	*/
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
+    bool bAutoInitOutlet = true;
+
     // Name of stream. Used to build stream info
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
     FString StreamName;
@@ -46,6 +52,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LSL, meta = (ExposeOnSpawn = "true"))
 	TArray<FChannelData> Channels;
+
+    UFUNCTION(BlueprintCallable, Category = LSL)
+    void InitOutlet();
 
     UFUNCTION(BlueprintCallable, Category = LSL)
     void PushSampleFloat(TArray<float> data);

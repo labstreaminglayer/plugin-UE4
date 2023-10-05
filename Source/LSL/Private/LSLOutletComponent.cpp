@@ -20,7 +20,14 @@ ULSLOutletComponent::ULSLOutletComponent() :
 // Called when the game starts
 void ULSLOutletComponent::BeginPlay()
 {
-    Super::BeginPlay();
+	Super::BeginPlay();
+	if (bAutoInitOutlet) {
+		InitOutlet();
+	}
+}
+
+void ULSLOutletComponent::InitOutlet()
+{
     //lsl_streaminfo lsl_myinfo = lsl_create_streaminfo(TCHAR_TO_ANSI(*StreamName), TCHAR_TO_ANSI(*StreamType), ChannelCount, SamplingRate, (lsl_channel_format_t)ChannelFormat, TCHAR_TO_ANSI(*StreamID));
     UE_LOG(LogLSL, Log, TEXT("Attempting to create stream outlet with name %s, type %s, sampling rate %f."), *StreamName, *StreamType, SamplingRate);
     lsl::stream_info data_info(
