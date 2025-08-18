@@ -77,7 +77,7 @@ public class LSL : ModuleRules
         }
 	else if (Target.Platform == UnrealTargetPlatform.Linux)
         {
-            string LinuxSoPath = Path.Combine(BinariesPath, "Linux", "liblsl.so");
+            string LinuxSoPath = Path.Combine(DllPath, "liblsl.so");
             PublicAdditionalLibraries.Add(LinuxSoPath);
             PublicDelayLoadDLLs.Add(LinuxSoPath);
             RuntimeDependencies.Add(LinuxSoPath);
