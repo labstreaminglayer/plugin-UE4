@@ -19,6 +19,8 @@ void FLSL::StartupModule()
 	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Source/ThirdParty/liblsl/bin/lsl.dll"));
 #elif PLATFORM_MAC
 	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Source/ThirdParty/liblsl/bin/liblsl.dylib"));
+#elif PLATFORM_LINUX
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Source/ThirdParty/liblsl/bin/liblsl.so"));
 #endif // PLATFORM_WINDOWS
 
 	LibLslHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;

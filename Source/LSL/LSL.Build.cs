@@ -75,7 +75,13 @@ public class LSL : ModuleRules
             PublicDelayLoadDLLs.Add(Path.Combine(DllPath, "liblsl.dylib"));
             RuntimeDependencies.Add(Path.Combine(DllPath, "liblsl.dylib"));
         }
-
+	else if (Target.Platform == UnrealTargetPlatform.Linux)
+        {
+            string LinuxSoPath = Path.Combine(DllPath, "liblsl.so");
+            PublicAdditionalLibraries.Add(LinuxSoPath);
+            PublicDelayLoadDLLs.Add(LinuxSoPath);
+            RuntimeDependencies.Add(LinuxSoPath);
+        }
         return true;
     }
 }

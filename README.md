@@ -65,6 +65,14 @@ We are going to use overlap events in a sphere object to trigger sending markers
 
 ![LSL Outlet](https://github.com/labstreaminglayer/plugin-UE4/raw/master/Resources/LSLOutput.PNG "LSL Outlet in UE4")
 
+# Notes for Linux
+The library for Linux [liblsl.so](./Source/ThirdParty/liblsl/bin/liblsl.so), was compiled usig Unreal Engine 5.5.4 Linux toolchain. It has been tested with Unreal Engine 5.4.27 and 5.6.1. There is a chance that the library crashes the editor (e.g. Segmentation fault), if this is the case we suggest to re-compile liblsl from source. To do that:
+
+1. Clone the [liblsl](https://github.com/sccn/liblsl) locally
+2. Copy the script [build_liblsl_for_ue.sh](./build_liblsl_for_ue.sh) in the top folder of liblsl.
+3. Run the script. The script will locate your Unreal Engine installations and ask which of the Engine's version to use for the compilation. Select the desired engine and the desired toolchain.
+4. Upon successful compilation, the script will ask where it should move the compiled library, enter the path to the [bin](./Source/ThirdParty/liblsl/bin/) folder.
+
 # Known Issues
 
 * The LSLInletComponent only supports float, double, and string data types. And the double data will be cast to float before being made available in blueprints.
