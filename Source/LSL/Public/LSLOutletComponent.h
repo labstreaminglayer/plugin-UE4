@@ -54,16 +54,16 @@ public:
 	TArray<FChannelData> Channels;
 
     UFUNCTION(BlueprintCallable, Category = LSL)
-    void InitOutlet();
+    virtual void InitOutlet();
 
     UFUNCTION(BlueprintCallable, Category = LSL)
-    void PushSampleFloat(TArray<float> data);
+    virtual void PushSampleFloat(TArray<float> data);
 
     //UFUNCTION(BlueprintCallable, Category = LSL)
     //void PushSampleDouble(TArray<double> data);
 
     UFUNCTION(BlueprintCallable, Category = LSL)
-    void PushSampleLong(TArray<int32> data);
+    virtual void PushSampleLong(TArray<int32> data);
 
     //UFUNCTION(BlueprintCallable, Category = LSL)
     //void PushSampleInt(TArray<int16> data);
@@ -72,7 +72,7 @@ public:
     //void PushSampleShort(TArray<int16> data);
  
     UFUNCTION(BlueprintCallable, Category = LSL)
-    void PushSampleString(TArray<FString> data);
+    virtual void PushSampleString(TArray<FString> data);
 
     /*
     UFUNCTION(BlueprintCallable, Category = LSL)
